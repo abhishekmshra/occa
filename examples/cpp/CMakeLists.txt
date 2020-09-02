@@ -15,6 +15,7 @@ add_subdirectory(14_native_opencl_kernels)
 add_subdirectory(15_openmp_interop)
 add_subdirectory(16_cuda_interop)
 add_subdirectory(17_opencl_interop)
+add_subdirectory(20_hip_interop)
 
 # Don't force-compile OpenGL examples
 #  add_subdirectory(18_finite_difference)

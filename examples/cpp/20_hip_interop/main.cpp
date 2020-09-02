@@ -21,11 +21,11 @@ int main(int argc, char **argv) {
   hipMalloc(&hip_ab, entries * sizeof(float));
 
   //  ---[ Get CUDA Info ]----
-  hipDevice_t hipDevice;
-  hipCtx_t hipCtx;
+  //hipDevice_t hipDevice;
+  //hipCtx_t hipCtx;
 
-  hipDeviceGet(&hipDevice, hipDeviceID);
-  hipCtxGetCurrent(&hipCtx);
+  //hipDeviceGet(&hipDevice, hipDeviceID);
+  //hipCtxGetCurrent(&hipCtx);
   //  ========================
   //====================================
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
   float *b  = new float[entries];
   float *ab = new float[entries];
 
-  occa::device device = occa::hip::wrapDevice(hipDevice, hipCtx);
+  //occa::device device; // = occa::hip::wrapDevice(hipDevice, hipCtx);
 
   occa::kernel addVectors;
   occa::memory o_a, o_b, o_ab;
@@ -43,6 +43,13 @@ int main(int argc, char **argv) {
     b[i]  = 1 - i;
     ab[i] = 0;
   }
+
+  //device.setup("mode: 'HIP'");
+
+  occa::properties deviceProps;
+  deviceProps["mode"] = "HIP";
+  deviceProps["device_id"] = 0;
+  occa::device device(deviceProps);
 
   o_a  = occa::hip::wrapMemory(device, hip_a , entries * sizeof(float));
   o_b  = occa::hip::wrapMemory(device, hip_b , entries * sizeof(float));

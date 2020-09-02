@@ -5,7 +5,8 @@ else
   include ${OCCA_DIR}/scripts/Makefile
 endif
 
-#linkerFlags += -lcudart
+paths += -I/opt/rocm-3.7.0-13/hip/include/hip/ 
+#linkerFlags += -lhip
 
 #---[ COMPILATION ]-------------------------------
 headers = $(wildcard $(incPath)/*.hpp) $(wildcard $(incPath)/*.tpp)
